@@ -1,0 +1,32 @@
+form:
+    fields:
+        name:
+            label: Názov chatu
+            type: text
+            span: auto
+            required: true
+
+        users:
+            label: Používatelia
+            type: relation
+            nameFrom: email
+            span: auto
+            select: email
+            multiple: true
+            required: true
+
+    tabs:
+        fields:
+            created_at:
+                label: Vytvorené
+                type: datetime
+                span: auto
+                readOnly: true
+                disabled: true
+
+            updated_at:
+                label: Upravené
+                type: datetime
+                span: auto
+                readOnly: true
+                disabled: true
