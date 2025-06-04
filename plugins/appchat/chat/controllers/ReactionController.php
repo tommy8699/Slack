@@ -5,7 +5,7 @@ namespace AppChat\Controllers;
 use Backend\Classes\Controller;
 use BackendMenu;
 
-class ChatController extends Controller
+class ReactionController extends Controller
 {
     public $implement = [
         'Backend\Behaviors\ListController',
@@ -18,6 +18,6 @@ class ChatController extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('AppChat', 'chat', 'chatcontroller');
+        BackendMenu::setContext('AppChat', 'chat', 'reactioncontroller');
     }
 }

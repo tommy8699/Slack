@@ -1,29 +1,28 @@
 <?php
 
-namespace AppChat\Chat\Models;
+
+namespace AppChat\Models;
 
 use Model;
+use October\Rain\Database\Traits\Validation;
+use October\Rain\Database\Traits\SoftDelete;
+use October\Rain\Database\Traits\AttachMany;
 
 class Chat extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use Validation;
 
-    public $table = 'appchat_chat_chats';
+    public $table = 'appchat_chats';
 
     public $rules = [
-        'name' => 'nullable|string|max:255',
-    ];
-
-    public $belongsToMany = [
-        'users' => [
-            \AppUser\User\Models\User::class,
-            'table' => 'appchat_chat_chat_user',
-            'pivot' => ['joined_at'],
-            'timestamps' => true
-        ]
+        'name' => 'required|string|max:255',
     ];
 
     public $hasMany = [
-        'messages' => [\AppChat\Chat\Models\Message::class]
+        'messages' => [Message::class],
+    ];
+
+    public $belongsToMany = [
+        'users' => [\AppUser\Models\User::class, 'table' => 'appchat_chat_user'],
     ];
 }
