@@ -1,36 +1,30 @@
 <?php
 
-namespace AppChat;
+namespace AppChat\Chat;
 
 use System\Classes\PluginBase;
-use AppChat\Models\EmojiSetting;
-use Event;
+use Illuminate\Support\Facades\Event;
 
 class Plugin extends PluginBase
 {
     public function pluginDetails()
     {
         return [
-            'name'        => 'AppChat',
-            'description' => 'Chat backend with messages, reactions, emojis and API.',
-            'author'      => 'App',
+            'name'        => 'Chat',
+            'description' => 'Provides chat functionality via API and CMS.',
+            'author'      => 'AppChat',
             'icon'        => 'icon-comments'
         ];
     }
 
-    public function registerSettings()
+    public function register()
     {
-        return [
-            'emojisetting' => [
-                'label'       => 'Emoji Settings',
-                'description' => 'Manage available emojis for reactions.',
-                'category'    => 'Chat',
-                'icon'        => 'icon-smile-o',
-                'class'       => EmojiSetting::class,
-                'order'       => 500,
-                'keywords'    => 'emoji chat reaction',
-                'permissions' => ['appchat.manage_emojis']
-            ]
-        ];
+        // Registrácia eventov, ak bude potrebná
+    }
+
+    public function boot()
+    {
+        // Načítanie rout pre API
+        \App::register(\AppChat\Chat\RoutesServiceProvider::class);
     }
 }

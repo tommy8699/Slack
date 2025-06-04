@@ -1,26 +1,29 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use AppChat\Api\ChatController;
-use AppChat\Api\MessageController;
-use AppChat\Api\EmojiController;
+use Illuminate\Support\Facades\Route;
+use AppChat\Chat\Api\MessageController;
+use AppChat\Chat\Api\EmojiController;
 
+// API routy chránené middleware-om 'auth.user'
 Route::prefix('api')->group(function () {
 
-    // Chats
-    Route::middleware(['authToken'])->group(function () {
-        Route::get('chats', [ChatController::class, 'index']);
-        Route::post('chats', [ChatController::class, 'store']);
-        Route::post('chats/{id}/rename', [ChatController::class, 'rename']);
-        Route::post('chats/{id}/invite', [ChatController::class, 'invite']);
-        Route::post('chats/{id}/leave', [ChatController::class, 'leave']);
+    Route::middleware(['AppUser\User\Middleware\AuthMiddleware'])->group(function () {
 
-        // Messages
-        Route::get('chats/{id}/messages', [MessageController::class, 'index']);
-        Route::post('chats/{id}/messages', [MessageController::class, 'store']);
-        Route::post('messages/{id}/react', [MessageController::class, 'react']);
+        // Chaty
+        Route::get('/chats', [ChatController::class, 'index']);
+        Route::post('/chats', [ChatController::class, 'store']);
+        Route::put('/chats/{id}/rename', [ChatController::class, 'rename']);
+        Route::post('/chats/{id}/invite', [ChatController::class, 'invite']);
+        Route::post('/chats/{id}/leave', [ChatController::class, 'leave']);
+
+        // Správy
+        Route::get('/chats/{id}/messages', [MessageController::class, 'index']);
+        Route::post('/chats/{id}/messages', [MessageController::class, 'store']);
+        Route::post('/messages/{id}/react', [MessageController::class, 'react']);
+
     });
 
-    // Emojis - no auth required
-    Route::get('emojis', [EmojiController::class, 'index']);
+    // Emoji
+    Route::get('/emojis', [EmojiController::class, 'index']);
 });
