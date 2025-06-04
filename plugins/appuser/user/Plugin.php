@@ -1,6 +1,6 @@
 <?php
 
-namespace AppUser;
+namespace AppUser\User;
 
 use System\Classes\PluginBase;
 

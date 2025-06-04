@@ -2,6 +2,7 @@
 
 namespace AppChat\Chat;
 
+use AppChat\Chat\Classes\RoutesServiceProvider;
 use System\Classes\PluginBase;
 use Illuminate\Support\Facades\Event;
 
@@ -25,6 +26,6 @@ class Plugin extends PluginBase
     public function boot()
     {
         // Načítanie rout pre API
-        \App::register(\AppChat\Chat\RoutesServiceProvider::class);
+        \App::register(RoutesServiceProvider::class);
     }
 }
