@@ -8,8 +8,16 @@
         "php": "^8.0.2",
         "october/rain": "^3.7",
         "laravel/framework": "^9.0",
-        "october/all": "^3.7"
-    },
+        "october/all": "^3.7",
+        "w/seeder-plugin": "^1.0.0+w-seeder",
+        "wapi/apiresponse-plugin": "^2.2",
+        "wapi/apiexception-plugin": "^2.1",
+        "wapi/api-plugin": "^1.4",
+        "wapi/security-plugin": "^1.1",
+        "w/utils-plugin": "^1.6",
+        "w/filesystem-plugin": "^1.0",
+        "w/image-plugin": "^2.0"
+        },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"
     },
@@ -51,6 +59,10 @@
             "type": "composer",
             "url": "https://gateway.octobercms.com",
             "only": ["october/*", "*-plugin", "*-theme"]
+        },
+        "git": {
+            "type": "git",
+            "url": "https://gitlab.com/wezeo/ocms-plugins/wezeo-be-plugins.git"
         }
     }
 }
