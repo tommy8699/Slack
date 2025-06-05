@@ -1,4 +1,6 @@
-<?php namespace Slack\Appchat\Updates;
+<?php
+
+namespace Slack\Appchat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -20,9 +22,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('chat_id');
             $table->unsignedBigInteger('user_id');
-            $table->text('content')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->timestamps();
+            $table->text('content')->nullable()->default(null);
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
+            $table->timestamps(0);
+
+            // Indexy pre rýchlejšie vyhľadávanie
+            $table->index('chat_id');
+            $table->index('user_id');
+            $table->index('parent_id');
         });
     }
 

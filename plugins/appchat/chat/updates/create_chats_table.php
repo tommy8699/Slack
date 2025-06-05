@@ -1,4 +1,6 @@
-<?php namespace Slack\Appchat\Updates;
+<?php
+
+namespace Slack\Appchat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -18,15 +20,15 @@ return new class extends Migration
     {
         Schema::create('appchat_chats', function(Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamps();
+            $table->string('name')->default('New Chat'); // default hodnota pre name
+            $table->timestamps(0); // bez mikrosekúnd, ak chceš
         });
 
         Schema::create('appchat_chat_user', function(Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('chat_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+            $table->timestamps(0);
 
             $table->unique(['chat_id', 'user_id']);
         });
@@ -41,3 +43,4 @@ return new class extends Migration
         Schema::dropIfExists('appchat_chats');
     }
 };
+

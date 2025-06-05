@@ -1,4 +1,6 @@
-<?php namespace Slack\Appchat\Updates;
+<?php
+
+namespace Slack\Appchat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -20,10 +22,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('message_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('emoji');
-            $table->timestamps();
+            $table->string('emoji')->default(''); // pridal som default prázdny string
+            $table->timestamps(0);
 
             $table->unique(['message_id', 'user_id']);
+            $table->index('message_id');
+            $table->index('user_id');
         });
     }
 
@@ -32,7 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slack_appchat_reactions');
         Schema::dropIfExists('appchat_reactions');
     }
 };

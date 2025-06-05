@@ -1,4 +1,6 @@
-<?php namespace Slack\Appchat\Updates;
+<?php
+
+namespace Slack\Appchat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -18,8 +20,8 @@ return new class extends Migration
     {
         Schema::create('appchat_emoji_settings', function(Blueprint $table) {
             $table->id();
-            $table->text('emojis')->nullable();
-            $table->timestamps();
+            $table->text('emojis')->nullable()->default(null); // explicitne nullable s default null
+            $table->timestamps(0); // timestamps bez mikrosekúnd, môžeš dať aj bez parametra
         });
     }
 
