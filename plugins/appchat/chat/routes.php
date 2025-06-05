@@ -1,8 +1,8 @@
 <?php
 
-use AppChat\Api\ChatController;
-use AppChat\Api\EmojiController;
-use AppChat\Api\MessageController;
+use AppChat\Chat\Api\ChatController;
+use AppChat\Chat\Api\EmojiController;
+use AppChat\Chat\Api\MessageController;
 use Illuminate\Support\Facades\Route;
 
 // API routy chránené middleware-om 'auth.user' s prefixom api/v1

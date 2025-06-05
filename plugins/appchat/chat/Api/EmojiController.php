@@ -1,6 +1,6 @@
 <?php
 
-namespace AppChat\Api;
+namespace AppChat\Chat\Api;
 
 use AppChat\Helpers\ApiResponseHelper;
 use EmojiSetting;
