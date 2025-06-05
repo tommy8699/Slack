@@ -2,7 +2,7 @@
 
 namespace AppUser\User\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Auth\Models\User as AuthUser;
 
 class User extends AuthUser

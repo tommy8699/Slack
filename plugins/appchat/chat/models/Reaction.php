@@ -2,10 +2,8 @@
 
 namespace AppChat\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\AttachMany;
 
 class Reaction extends Model
 {
@@ -19,6 +17,6 @@ class Reaction extends Model
 
     public $belongsTo = [
         'message' => Message::class,
-        'user' => \AppUser\Models\User::class,
+        'user' => \AppUser\User\Models\User::class,
     ];
 }

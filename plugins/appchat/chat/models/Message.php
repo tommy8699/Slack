@@ -2,9 +2,8 @@
 
 namespace AppChat\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
-use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Database\Traits\AttachMany;
 
 class Message extends Model
@@ -16,13 +15,13 @@ class Message extends Model
     public $rules = [
         'content' => 'nullable|string',
         'chat_id' => 'required|exists:appchat_chats,id',
-        'user_id' => 'required|exists:appuser_users,id'
+        'user_id' => 'required|exists:appuser_user_users,id', // opravený názov tabuľky
     ];
 
     public $belongsTo = [
         'chat' => Chat::class,
-        'user' => \AppUser\Models\User::class,
-        'replyTo' => [self::class, 'key' => 'reply_id']
+        'user' => \AppUser\User\Models\User::class,
+        'replyTo' => [self::class, 'key' => 'parent_id'], // opravený kľúč podľa migrácie
     ];
 
     public $hasMany = [
@@ -30,6 +29,6 @@ class Message extends Model
     ];
 
     public $attachMany = [
-        'files' => 'System\Models\File',
+        'files' => ['System\Models\File'],
     ];
 }

@@ -1,9 +1,9 @@
 <?php
 
-use Model;
+namespace AppChat\Models;
+
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\AttachMany;
 
 class EmojiSetting extends Model
 {
