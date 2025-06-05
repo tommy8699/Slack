@@ -1,12 +1,12 @@
 <?php
 
-namespace AppUser\User\Controllers;
+namespace AppUser\User\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+use AppUser\User\helpers\ApiResponseHelper;
 use AppUser\User\Models\User;
 use Hash;
-use AppUser\Helpers\ApiResponseHelper;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class AuthController extends Controller
 {

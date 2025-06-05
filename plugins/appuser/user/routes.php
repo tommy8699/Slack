@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use AppUser\User\Controllers\AuthController;
+use AppUser\User\Api\AuthController;
 
 Route::prefix('api/v1/user')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
