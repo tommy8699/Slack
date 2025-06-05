@@ -18,17 +18,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appuser_user_users', function(Blueprint $table)
-        {
+        Schema::create('appuser_user_users', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('name')->default('');        // Pridal som default prázdny reťazec
-            $table->string('token')->nullable()->default(null);
-            $table->timestamps(0);
-
-            // Pre rýchle vyhľadávanie podľa mena, ak bude potrebné
-            $table->index('name');
+            $table->string('name');
+            $table->string('persist_code')->nullable(); // ← toto je dôležité
+            $table->string('token', 30)->unique();
+            $table->timestamps();
         });
     }
 

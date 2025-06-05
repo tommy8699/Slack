@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 // API routy chránené middleware-om 'auth.user' s prefixom api/v1
 Route::prefix('api/v1')->group(function () {
 
-    Route::middleware(['AppUser\User\Middleware\AuthMiddleware'])->group(function () {
+    Route::middleware(['AppUser\User\Middleware\Authenticate'])->group(function () {
 
         // Chaty
         Route::get('/chats', [ChatController::class, 'index']);
