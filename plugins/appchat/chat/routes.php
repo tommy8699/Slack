@@ -1,12 +1,12 @@
 <?php
 
 use AppChat\Api\ChatController;
+use AppChat\Api\EmojiController;
+use AppChat\Api\MessageController;
 use Illuminate\Support\Facades\Route;
-use AppChat\Chat\Api\MessageController;
-use AppChat\Chat\Api\EmojiController;
 
-// API routy chránené middleware-om 'auth.user'
-Route::prefix('api')->group(function () {
+// API routy chránené middleware-om 'auth.user' s prefixom api/v1
+Route::prefix('api/v1')->group(function () {
 
     Route::middleware(['AppUser\User\Middleware\AuthMiddleware'])->group(function () {
 
@@ -24,6 +24,6 @@ Route::prefix('api')->group(function () {
 
     });
 
-    // Emoji
+    // Emoji (bez autentifikácie)
     Route::get('/emojis', [EmojiController::class, 'index']);
 });
