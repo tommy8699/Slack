@@ -2,11 +2,9 @@
 
 namespace AppChat\Api;
 
+use AppChat\Helpers\ApiResponseHelper;
 use AppChat\Models\Chat;
-use AppUser\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use October\Rain\Extension\Controller;
 use Illuminate\Routing\Controller as BaseController;
 
 class ChatController extends BaseController
@@ -19,29 +17,29 @@ class ChatController extends BaseController
         $chat->save();
 
         $chat->users()->attach($request->user()->id);
-        return response()->json($chat);
+        return ApiResponseHelper::jsonResponse($chat);
     }
 
     public function rename(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
         if (!$chat->users->contains($request->user()->id)) {
-            return response()->json(['error' => 'Unauthorized'], 403);
+            return ApiResponseHelper::jsonResponse(['error' => 'Unauthorized'], 403, 'Unauthorized');
         }
         $chat->name = $request->get('name');
         $chat->save();
-        return response()->json($chat);
+        return ApiResponseHelper::jsonResponse($chat);
     }
 
     public function invite(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
         if (!$chat->users->contains($request->user()->id)) {
-            return response()->json(['error' => 'Unauthorized'], 403);
+            return ApiResponseHelper::jsonResponse(['error' => 'Unauthorized'], 403, 'Unauthorized');
         }
         $userId = $request->get('user_id');
         $chat->users()->attach($userId);
-        return response()->json(['status' => 'User invited']);
+        return ApiResponseHelper::jsonResponse(['status' => 'User invited']);
     }
 
     public function leave(Request $request, $id)
@@ -51,6 +49,6 @@ class ChatController extends BaseController
         if ($chat->users()->count() === 0) {
             $chat->delete();
         }
-        return response()->json(['status' => 'Left chat']);
+        return ApiResponseHelper::jsonResponse(['status' => 'Left chat']);
     }
 }

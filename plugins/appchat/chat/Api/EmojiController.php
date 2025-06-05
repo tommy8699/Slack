@@ -2,7 +2,8 @@
 
 namespace AppChat\Api;
 
-use AppChat\Models\EmojiSetting;
+use AppChat\Helpers\ApiResponseHelper;
+use EmojiSetting;
 use Illuminate\Routing\Controller as BaseController;
 
 class EmojiController extends BaseController
@@ -11,6 +12,6 @@ class EmojiController extends BaseController
     {
         $setting = EmojiSetting::instance();
         $emojis = json_decode($setting->available_emojis ?? '[]');
-        return response()->json($emojis);
+        return ApiResponseHelper::jsonResponse($emojis);
     }
 }

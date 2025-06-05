@@ -2,9 +2,9 @@
 
 namespace AppUser\Middleware;
 
+use AppUser\User\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-use AppUser\Models\User;
 
 class AuthTokenMiddleware
 {
