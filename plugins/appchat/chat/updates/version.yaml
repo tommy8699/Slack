@@ -1,0 +1,6 @@
+1.0.0:
+    - First version of Chat plugin
+    - create_chats_table.php
+    - create_emoji_settings_table.php
+    - create_messages_table.php
+    - create_reactions_table.php
