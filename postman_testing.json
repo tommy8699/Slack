@@ -1,361 +1,422 @@
 {
-  "info": {
-    "name": "OCMS Slack API",
-    "_postman_id": "ocms-slack-api-collection-id",
-    "description": "Postman kolekcia pre testovanie API endpointov OCMS Slack aplik\u00e1cie.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Register",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/user/register",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "user",
-            "register"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"secret\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Login",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/user/login",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "user",
-            "login"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"secret\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Logout",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/user/logout",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "user",
-            "logout"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Chats",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Create Chat",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Rename Chat",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats/1/rename",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats",
-            "1",
-            "rename"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"Renamed Chat\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Invite to Chat",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats/1/invite",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats",
-            "1",
-            "invite"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"user_id\": 2\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Leave Chat",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats/1/leave",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats",
-            "1",
-            "leave"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Messages",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats/1/messages",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats",
-            "1",
-            "messages"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Send Message",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/chats/1/messages",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "chats",
-            "1",
-            "messages"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"content\": \"Hello world!\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "React to Message",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/messages/1/react",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "messages",
-            "1",
-            "react"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"emoji\": \"\\ud83d\\udc4d\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Emojis",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/v1/emojis",
-          "host": [
-            "http://127.0.0.1:8000"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "emojis"
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "16c58036-f413-46f7-ada2-9ce60722954b",
+		"name": "OCMS Slack API",
+		"description": "Postman kolekcia pre testovanie API endpointov OCMS Slack aplikácie.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16082749"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"secret\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"secret\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Chats",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Chat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename Chat",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Renamed Chat\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats/1/rename",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats",
+						"1",
+						"rename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invite to Chat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats/1/invite",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats",
+						"1",
+						"invite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Leave Chat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats/1/leave",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats",
+						"1",
+						"leave"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Messages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats/1/messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Hello world!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/chats/1/messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"chats",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "React to Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emoji\": \"\\ud83d\\udc4d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/messages/1/react",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"1",
+						"react"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Emojis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/emojis",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"emojis"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
