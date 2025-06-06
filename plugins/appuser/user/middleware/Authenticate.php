@@ -2,7 +2,6 @@
 
 namespace AppUser\User\Middleware;
 
-use Closure;
 use AppUser\User\Models\User;
 
 class Authenticate

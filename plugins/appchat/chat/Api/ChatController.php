@@ -40,22 +40,39 @@ class ChatController extends BaseController
     public function rename(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
-        if (!$chat->users->contains($request->user()->id)) {
-            return ApiResponseHelper::jsonResponse(['error' => 'Unauthorized'], 403, 'Unauthorized');
-        }
+
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
         $chat->name = $request->get('name');
         $chat->save();
-        return ApiResponseHelper::jsonResponse($chat);
+
+        return ApiResponseHelper::jsonResponse($chat, 200, 'Chat renamed');
     }
 
     public function invite(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
-        if (!$chat->users->contains($request->user()->id)) {
+        $user = $request->user;
+
+        // SQL dotaz: overí, či používateľ patrí do chatu
+        $hasAccess = $chat->users()
+            ->where('appuser_user_users.id', $user->id)
+            ->exists();
+
+        if (!$hasAccess) {
             return ApiResponseHelper::jsonResponse(['error' => 'Unauthorized'], 403, 'Unauthorized');
         }
-        $userId = $request->get('user_id');
-        $chat->users()->attach($userId);
+
+        // Validácia vstupu
+        $validated = $request->validate([
+            'user_id' => 'required|exists:appuser_user_users,id'
+        ]);
+
+        // Zabráni duplikátom
+        $chat->users()->syncWithoutDetaching([$validated['user_id']]);
+
         return ApiResponseHelper::jsonResponse(['status' => 'User invited']);
     }
 

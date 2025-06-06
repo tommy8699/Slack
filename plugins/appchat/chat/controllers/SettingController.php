@@ -1,21 +1,44 @@
 <?php
 
-namespace AppChat\Controllers;
+namespace Appchat\Chat\Controllers;
 
+use BackendMenu;
 use Backend\Classes\Controller;
-use System\Classes\SettingsManager;
 
+/**
+ * Setting Controller Backend Controller
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/controllers.html
+ */
 class SettingController extends Controller
 {
     public $implement = [
-    'Backend\Behaviors\FormController'
+        \Backend\Behaviors\FormController::class,
+        \Backend\Behaviors\ListController::class,
     ];
 
+    /**
+     * @var string formConfig file
+     */
     public $formConfig = 'config_form.yaml';
 
+    /**
+     * @var string listConfig file
+     */
+    public $listConfig = 'config_list.yaml';
+
+    /**
+     * @var array required permissions
+     */
+    public $requiredPermissions = ['appchat.chat.settingcontroller'];
+
+    /**
+     * __construct the controller
+     */
     public function __construct()
     {
         parent::__construct();
-        SettingsManager::setContext('AppChat', 'emojisettings');
+
+        BackendMenu::setContext('Appchat.Chat', 'chat', 'settingcontroller');
     }
 }

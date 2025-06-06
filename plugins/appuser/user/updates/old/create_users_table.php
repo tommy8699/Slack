@@ -1,6 +1,6 @@
 <?php
 
-namespace Appuser\User\Updates;
+namespace AppUser\User\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;

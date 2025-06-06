@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Setting Controller
+
+# Model Form Field configuration
+form: $/appchat/chat/models/settingcontroller/fields.yaml
+
+# Model Class name
+modelClass: Appchat\Chat\Models\SettingController
+
+# Default redirect location
+defaultRedirect: appchat/chat/settingcontroller
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/chat/settingcontroller/update/:id
+    redirectClose: appchat/chat/settingcontroller
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/chat/settingcontroller
+    redirectClose: appchat/chat/settingcontroller
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

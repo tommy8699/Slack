@@ -16,8 +16,4 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function register()
-    {
-        $this->app['router']->aliasMiddleware('authToken', \AppUser\Middleware\AuthTokenMiddleware::class);
-    }
 }

@@ -1,6 +1,4 @@
-<?php
-
-namespace Slack\Appchat\Updates;
+<?php namespace Appchat\Chat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;

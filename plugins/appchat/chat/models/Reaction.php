@@ -1,22 +1,23 @@
-<?php
+<?php namespace Appchat\Chat\Models;
 
-namespace AppChat\Chat\Models;
+use Model;
 
-use October\Rain\Database\Model;
-use October\Rain\Database\Traits\Validation;
-
+/**
+ * Reaction Model
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/models.html
+ */
 class Reaction extends Model
 {
-    use Validation;
+    use \October\Rain\Database\Traits\Validation;
 
-    public $table = 'appchat_reactions';
+    /**
+     * @var string table name
+     */
+    public $table = 'appchat_chat_reactions';
 
-    public $rules = [
-        'emoji' => 'required|string',
-    ];
-
-    public $belongsTo = [
-        'message' => Message::class,
-        'user' => \AppUser\User\Models\User::class,
-    ];
+    /**
+     * @var array rules for validation
+     */
+    public $rules = [];
 }

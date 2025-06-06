@@ -17,15 +17,4 @@ class Plugin extends PluginBase
             'icon'        => 'icon-comments'
         ];
     }
-
-    public function register()
-    {
-        // Registrácia eventov, ak bude potrebná
-    }
-
-    public function boot()
-    {
-        // Načítanie rout pre API
-        \App::register(RoutesServiceProvider::class);
-    }
 }

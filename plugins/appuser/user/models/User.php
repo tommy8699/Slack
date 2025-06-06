@@ -1,41 +1,23 @@
-<?php
+<?php namespace Appuser\User\Models;
 
-namespace AppUser\User\Models;
+use Model;
 
-use October\Rain\Database\Model;
-use October\Rain\Auth\Models\User as AuthUser;
-
-class User extends AuthUser
+/**
+ * User Model
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/models.html
+ */
+class User extends Model
 {
+    use \October\Rain\Database\Traits\Validation;
+
+    /**
+     * @var string table name
+     */
     public $table = 'appuser_user_users';
 
-    protected $fillable = [
-        'email',
-        'password',
-        'name',
-        'persist_code',
-        'token'
-    ];
-
-    protected $hidden = [
-        'password',
-        'token',
-        'persist_code'
-    ];
-
-    public $rules = [
-        'email' => 'required|email|unique:appuser_user_users',
-        'password' => 'required|min:6',
-        'name' => 'required'
-    ];
-
-    protected $hashable = [
-        'password'
-    ];
-
-    public function beforeCreate()
-    {
-        $this->token = bin2hex(random_bytes(15)); // 30-char token
-        $this->persist_code = bin2hex(random_bytes(10)); // 20-char code
-    }
+    /**
+     * @var array rules for validation
+     */
+    public $rules = [];
 }

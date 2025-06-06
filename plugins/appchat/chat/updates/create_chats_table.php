@@ -1,6 +1,4 @@
-<?php
-
-namespace Slack\Appchat\Updates;
+<?php namespace Appchat\Chat\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -43,4 +41,3 @@ return new class extends Migration
         Schema::dropIfExists('appchat_chats');
     }
 };
-

@@ -1,23 +1,44 @@
 <?php
 
-namespace AppChat\Controllers;
+namespace Appchat\Chat\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
+use Backend\Classes\Controller;
 
+/**
+ * Message Controller Backend Controller
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/controllers.html
+ */
 class MessageController extends Controller
 {
     public $implement = [
-        'Backend\Behaviors\ListController',
-        'Backend\Behaviors\FormController',
+        \Backend\Behaviors\FormController::class,
+        \Backend\Behaviors\ListController::class,
     ];
 
-    public $listConfig = 'config_list.yaml';
+    /**
+     * @var string formConfig file
+     */
     public $formConfig = 'config_form.yaml';
 
+    /**
+     * @var string listConfig file
+     */
+    public $listConfig = 'config_list.yaml';
+
+    /**
+     * @var array required permissions
+     */
+    public $requiredPermissions = ['appchat.chat.messagecontroller'];
+
+    /**
+     * __construct the controller
+     */
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('AppChat', 'chat', 'messagecontroller');
+
+        BackendMenu::setContext('Appchat.Chat', 'chat', 'messagecontroller');
     }
 }

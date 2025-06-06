@@ -1,24 +1,23 @@
-<?php
+<?php namespace Appchat\Chat\Models;
 
-namespace AppChat\Chat\Models;
+use Model;
 
-use October\Rain\Database\Model;
-use October\Rain\Database\Traits\Validation;
-
+/**
+ * EmojiSetting Model
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/models.html
+ */
 class EmojiSetting extends Model
 {
-    use Validation;
+    use \October\Rain\Database\Traits\Validation;
 
-    public $implement = ['System.Behaviors.SettingsModel'];
+    /**
+     * @var string table name
+     */
+    public $table = 'appchat_chat_emoji_settings';
 
-    public $settingsCode = 'appchat_emojis';
-    public $settingsFields = 'fields.yaml';
-
-    public $table = 'appchat_emoji_settings';
-
-    public $rules = [
-        'emojis' => 'required|array',
-    ];
-
-    protected $jsonable = ['emojis'];
+    /**
+     * @var array rules for validation
+     */
+    public $rules = [];
 }
