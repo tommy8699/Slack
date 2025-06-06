@@ -54,23 +54,11 @@ class ChatController extends BaseController
     public function invite(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
-        $user = $request->user;
 
-        // SQL dotaz: overí, či používateľ patrí do chatu
-        $hasAccess = $chat->users()
-            ->where('appuser_user_users.id', $user->id)
-            ->exists();
-
-        if (!$hasAccess) {
-            return ApiResponseHelper::jsonResponse(['error' => 'Unauthorized'], 403, 'Unauthorized');
-        }
-
-        // Validácia vstupu
         $validated = $request->validate([
             'user_id' => 'required|exists:appuser_user_users,id'
         ]);
 
-        // Zabráni duplikátom
         $chat->users()->syncWithoutDetaching([$validated['user_id']]);
 
         return ApiResponseHelper::jsonResponse(['status' => 'User invited']);
@@ -79,7 +67,7 @@ class ChatController extends BaseController
     public function leave(Request $request, $id)
     {
         $chat = Chat::findOrFail($id);
-        $chat->users()->detach($request->user()->id);
+        $chat->users()->detach($request->id);
         if ($chat->users()->count() === 0) {
             $chat->delete();
         }

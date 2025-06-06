@@ -1,4 +1,6 @@
-<?php namespace Appchat\Chat\Models;
+<?php
+
+namespace Appchat\Chat\Models;
 
 use Model;
 
@@ -14,10 +16,23 @@ class Reaction extends Model
     /**
      * @var string table name
      */
-    public $table = 'appchat_chat_reactions';
+    public $table = 'appchat_reactions';
 
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'emoji' => 'required|string',
+    ];
+
+    public $belongsTo = [
+        'message' => Message::class,
+        'user' => \AppUser\User\Models\User::class,
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'message_id',
+        'emoji',
+    ];
 }

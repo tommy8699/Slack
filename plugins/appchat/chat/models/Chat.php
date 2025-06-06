@@ -1,4 +1,6 @@
-<?php namespace Appchat\Chat\Models;
+<?php
+
+namespace Appchat\Chat\Models;
 
 use Model;
 
@@ -14,10 +16,18 @@ class Chat extends Model
     /**
      * @var string table name
      */
-    public $table = 'appchat_chat_chats';
+    public $table = 'appchat_chats';
 
     /**
      * @var array rules for validation
      */
     public $rules = [];
+
+    public $hasMany = [
+        'messages' => [Message::class],
+    ];
+
+    public $belongsToMany = [
+        'users' => [\AppUser\User\Models\User::class, 'table' => 'appchat_chat_user'],
+    ];
 }

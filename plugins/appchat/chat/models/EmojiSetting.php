@@ -1,4 +1,6 @@
-<?php namespace Appchat\Chat\Models;
+<?php
+
+namespace Appchat\Chat\Models;
 
 use Model;
 
@@ -14,10 +16,19 @@ class EmojiSetting extends Model
     /**
      * @var string table name
      */
-    public $table = 'appchat_chat_emoji_settings';
+    public $table = 'appchat_emoji_settings';
 
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'emojis' => 'required|array',
+    ];
+
+    protected $jsonable = ['emojis'];
+
+    public static function instance()
+    {
+        return self::first();
+    }
 }

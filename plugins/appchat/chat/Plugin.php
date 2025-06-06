@@ -2,7 +2,6 @@
 
 namespace AppChat\Chat;
 
-use AppChat\Chat\Classes\RoutesServiceProvider;
 use System\Classes\PluginBase;
 use Illuminate\Support\Facades\Event;
 

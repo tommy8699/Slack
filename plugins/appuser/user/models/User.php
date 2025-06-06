@@ -1,4 +1,6 @@
-<?php namespace Appuser\User\Models;
+<?php
+
+namespace Appuser\User\Models;
 
 use Model;
 
@@ -16,8 +18,36 @@ class User extends Model
      */
     public $table = 'appuser_user_users';
 
+    protected $fillable = [
+        'email',
+        'password',
+        'name',
+        'persist_code',
+        'token'
+    ];
+
+    protected $hidden = [
+        'password',
+        'token',
+        'persist_code'
+    ];
+
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'email' => 'required|email|unique:appuser_user_users',
+        'password' => 'required|min:6',
+        'name' => 'required'
+    ];
+
+    protected $hashable = [
+        'password'
+    ];
+
+    public function beforeCreate()
+    {
+        $this->token = bin2hex(random_bytes(15)); // 30-char token
+        $this->persist_code = bin2hex(random_bytes(10)); // 20-char code
+    }
 }
