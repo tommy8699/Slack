@@ -58,7 +58,6 @@ class AuthController extends Controller
         $user = $request->user;
 
         if ($user) {
-            $user->token = null;
             $user->persist_code = null;
             $user->save();
         }
