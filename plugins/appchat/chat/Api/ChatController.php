@@ -2,14 +2,26 @@
 
 namespace AppChat\Chat\Api;
 
-use AppChat\Helpers\ApiResponseHelper;
-use AppChat\Models\Chat;
+use AppChat\Chat\Helpers\ApiResponseHelper;
+use AppChat\Chat\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class ChatController extends BaseController
 {
-    public function create(Request $request)
+
+    public function index(Request $request)
+    {
+        $user = $request->user;
+
+        $chats = Chat::whereHas('users', function ($query) use ($user) {
+            $query->where('appuser_user_users.id', $user->id);
+        })->get();
+
+        return ApiResponseHelper::jsonResponse($chats);
+    }
+
+    public function store(Request $request)
     {
         $data = $request->only(['name']);
         $chat = new Chat;

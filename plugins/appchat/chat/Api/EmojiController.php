@@ -2,8 +2,8 @@
 
 namespace AppChat\Chat\Api;
 
-use AppChat\Helpers\ApiResponseHelper;
-use EmojiSetting;
+use AppChat\Chat\Helpers\ApiResponseHelper;
+use AppChat\Chat\Models\EmojiSetting;
 use Illuminate\Routing\Controller as BaseController;
 
 class EmojiController extends BaseController

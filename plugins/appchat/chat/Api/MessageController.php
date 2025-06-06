@@ -2,10 +2,10 @@
 
 namespace AppChat\Chat\Api;
 
-use AppChat\Helpers\ApiResponseHelper;
-use AppChat\Models\Chat;
-use AppChat\Models\Message;
-use AppChat\Models\Reaction;
+use AppChat\Chat\Helpers\ApiResponseHelper;
+use AppChat\Chat\Models\Chat;
+use AppChat\Chat\Models\Message;
+use AppChat\Chat\Models\Reaction;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 

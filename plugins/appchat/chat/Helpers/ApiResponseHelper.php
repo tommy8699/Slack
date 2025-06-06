@@ -1,6 +1,6 @@
 <?php
 
-namespace AppChat\Helpers;
+namespace AppChat\Chat\Helpers;
 
 use Illuminate\Http\JsonResponse;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppChat\Models;
+namespace AppChat\Chat\Models;
 
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;

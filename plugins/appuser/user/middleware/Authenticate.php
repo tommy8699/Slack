@@ -7,15 +7,18 @@ use AppUser\User\Models\User;
 
 class Authenticate
 {
-    public function handle($request, Closure $next)
+    public function handle($request, \Closure $next)
     {
         $token = $request->bearerToken();
 
-        if (!$token || !User::where('token', $token)->exists()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        $user = User::where('token', $token)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
 
-        $request->user = User::where('token', $token)->first();
+        // Priradí používateľa do request objektu
+        $request->user = $user;
 
         return $next($request);
     }
