@@ -23,13 +23,18 @@ class ChatController extends BaseController
 
     public function store(Request $request)
     {
-        $data = $request->only(['name']);
-        $chat = new Chat;
-        $chat->name = $data['name'] ?? 'New Chat';
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255'
+        ]);
+
+        $chat = new Chat();
+        $chat->name = $validated['name'] ?? 'New Chat';
         $chat->save();
 
-        $chat->users()->attach($request->user()->id);
-        return ApiResponseHelper::jsonResponse($chat);
+        // Pridá aktuálneho používateľa do chatu
+        $chat->users()->attach($request->user->id);
+
+        return ApiResponseHelper::jsonResponse($chat, 201, 'Chat created');
     }
 
     public function rename(Request $request, $id)
