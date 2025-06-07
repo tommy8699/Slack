@@ -2,7 +2,7 @@
 
 namespace Appchat\Chat\Models;
 
-use Model;
+use October\Rain\Database\Model;
 
 /**
  * Chat Model

@@ -11,8 +11,8 @@ class EmojiController extends BaseController
 {
     public function index(Request $request)
     {
-        $setting = EmojiSetting::first();
-        $emojis = $setting->emojis ?? [];
+        $emojis = EmojiSetting::all()->toArray();
+
 
         return ApiResponseHelper::jsonResponse($emojis);
     }

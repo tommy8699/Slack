@@ -3,6 +3,6 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    emojis:
+        label: Emoji zoznam (napr. ["😀", ":thumbsup:"])
+        type: text
