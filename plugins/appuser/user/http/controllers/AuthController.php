@@ -2,7 +2,7 @@
 
 namespace AppUser\User\Http\Controllers;
 
-use AppUser\User\Http\Resources\ApiResponseHelper;
+use AppUser\User\Http\Resources\ApiResponseResource;
 use AppUser\User\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -29,7 +29,7 @@ class AuthController extends Controller
         $user->token = bin2hex(random_bytes(30));
         $user->save();
 
-        return ApiResponseHelper::jsonResponse([
+        return ApiResponseResource::jsonResponse([
             'token' => $user->token
         ], 201, 'User registered');
     }
@@ -55,7 +55,7 @@ class AuthController extends Controller
         $user->token = bin2hex(random_bytes(15));
         $user->save();
 
-        return ApiResponseHelper::jsonResponse([
+        return ApiResponseResource::jsonResponse([
             'token' => $user->token
         ], 200, 'Login successful');
     }
@@ -69,7 +69,7 @@ class AuthController extends Controller
             $user->save();
         }
 
-        return ApiResponseHelper::jsonResponse([
+        return ApiResponseResource::jsonResponse([
             'message' => 'Logged out'
         ]);
     }
