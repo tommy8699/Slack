@@ -24,9 +24,7 @@ class AuthController extends Controller
         $user = new User();
         $user->email = $validated['email'];
         $user->name = $validated['name'];
-        $user->password = Hash::make($validated['password']);
-        $plainToken = Str::random(60);
-        $this->token = Hash::make($plainToken); // 30-char token;
+        $user->password = $validated['password'];
         $user->save();
 
         return ApiResponseResource::jsonResponse([
@@ -52,8 +50,8 @@ class AuthController extends Controller
             throw new \Exception('Nesprávne heslo pre používateľa: ' . $user->email);
         }
 
-        $plainToken = Str::random(60);
-        $this->token = Hash::make($plainToken); // 30-char token;
+        $plainToken = Str::random(15);
+        $user->token = Hash::make($plainToken);
         $user->save();
 
         return ApiResponseResource::jsonResponse([

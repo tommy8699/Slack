@@ -49,7 +49,6 @@ class User extends Model
 
     public function beforeCreate()
     {
-        $plainToken = Str::random(60);
-        $this->token = Hash::make($plainToken); // 30-char token
+        $this->token = Str::random(60);
     }
 }

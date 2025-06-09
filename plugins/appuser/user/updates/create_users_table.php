@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('name');
-            $table->string('token', 30)->unique();
+            $table->text('token')->unique();
             $table->timestamps();
         });
     }
