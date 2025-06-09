@@ -15,5 +15,4 @@ class Plugin extends PluginBase
             'icon'        => 'icon-user'
         ];
     }
-
 }
