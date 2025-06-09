@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('name');
-            $table->string('persist_code')->nullable(); // ← toto je dôležité
             $table->string('token', 30)->unique();
             $table->timestamps();
         });

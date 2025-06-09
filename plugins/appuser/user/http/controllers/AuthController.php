@@ -7,12 +7,11 @@ use AppUser\User\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
 
-    use \Illuminate\Auth\Authenticatable;
 
     public function register(Request $request)
     {
@@ -26,7 +25,8 @@ class AuthController extends Controller
         $user->email = $validated['email'];
         $user->name = $validated['name'];
         $user->password = Hash::make($validated['password']);
-        $user->token = bin2hex(random_bytes(30));
+        $plainToken = Str::random(60);
+        $this->token = Hash::make($plainToken); // 30-char token;
         $user->save();
 
         return ApiResponseResource::jsonResponse([
@@ -41,7 +41,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::all()->where('email', $validated['email'])->first();
+        $user = User::query()->where('email', $validated['email'])->first();
 
         if(!$user) {
             \Log::warning('Používateľ neexistuje');
@@ -52,7 +52,8 @@ class AuthController extends Controller
             throw new \Exception('Nesprávne heslo pre používateľa: ' . $user->email);
         }
 
-        $user->token = bin2hex(random_bytes(15));
+        $plainToken = Str::random(60);
+        $this->token = Hash::make($plainToken); // 30-char token;
         $user->save();
 
         return ApiResponseResource::jsonResponse([

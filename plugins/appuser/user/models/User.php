@@ -2,7 +2,9 @@
 
 namespace Appuser\User\Models;
 
-use Model;
+use Illuminate\Support\Facades\Hash;
+use October\Rain\Database\Model;
+use Illuminate\Support\Str;
 
 /**
  * User Model
@@ -11,7 +13,7 @@ use Model;
  */
 class User extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Hashable;
 
     /**
      * @var string table name
@@ -47,7 +49,7 @@ class User extends Model
 
     public function beforeCreate()
     {
-        $this->token = bin2hex(random_bytes(30)); // 30-char token
-        $this->persist_code = bin2hex(random_bytes(10)); // 20-char code
+        $plainToken = Str::random(60);
+        $this->token = Hash::make($plainToken); // 30-char token
     }
 }
