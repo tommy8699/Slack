@@ -3,6 +3,8 @@
 namespace AppUser\User\Middleware;
 
 use AppUser\User\Models\User;
+use WApi\ApiException\Exceptions\WUnauthorizedException;
+use function PHPUnit\Framework\throwException;
 
 class Authenticate
 {
@@ -10,10 +12,13 @@ class Authenticate
     {
         $token = $request->bearerToken();
 
-        $user = User::where('token', $token)->first();
+        $user = User::query()
+            ->whereNotNull('token')
+            ->where('token', $token)
+            ->first();
 
-        if (!$user) {
-            return response()->json(['error' => 'Unauthenticated'], 401);
+        if (!$user || !$token) {
+            throw new WUnauthorizedException('Unauthenticated');
         }
 
         // Priradí používateľa do request objektu

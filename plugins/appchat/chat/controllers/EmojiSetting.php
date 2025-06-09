@@ -30,30 +30,7 @@ class EmojiSetting extends Controller
     /**
      * @var array required permissions
      */
-    public $requiredPermissions = ['appchat.chat.access_emoji_settings'];
-
-    /**
-     * Kód nastavení v databáze (v `system_settings`)
-     */
-    public $settingsCode = 'appchat_emoji_settings';
-
-    /**
-     * Súbor s definíciou polí
-     */
-    public $settingsFields = 'fields.yaml';
-
-
-    /**
-     * Validačné pravidlá
-     */
-    public $rules = [
-        'emojis' => 'required|array',
-    ];
-
-    /**
-     * Polia ukladané ako JSON
-     */
-    protected $jsonable = ['emojis'];
+    public $requiredPermissions = ['appchat.chat.emojisetting'];
 
     /**
      * __construct the controller

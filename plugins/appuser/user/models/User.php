@@ -47,7 +47,7 @@ class User extends Model
 
     public function beforeCreate()
     {
-        $this->token = bin2hex(random_bytes(15)); // 30-char token
+        $this->token = bin2hex(random_bytes(30)); // 30-char token
         $this->persist_code = bin2hex(random_bytes(10)); // 20-char code
     }
 }

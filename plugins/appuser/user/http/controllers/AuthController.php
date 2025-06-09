@@ -1,15 +1,19 @@
 <?php
 
-namespace AppUser\User\Api;
+namespace AppUser\User\Http\Controllers;
 
-use AppUser\User\helpers\ApiResponseHelper;
+use AppUser\User\Http\Resources\ApiResponseHelper;
 use AppUser\User\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+    use \Illuminate\Auth\Authenticatable;
+
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -22,8 +26,7 @@ class AuthController extends Controller
         $user->email = $validated['email'];
         $user->name = $validated['name'];
         $user->password = Hash::make($validated['password']);
-        $user->token = bin2hex(random_bytes(15));         // 30 znakov
-        $user->persist_code = bin2hex(random_bytes(10));  // 20 znakov
+        $user->token = bin2hex(random_bytes(30));
         $user->save();
 
         return ApiResponseHelper::jsonResponse([
@@ -38,15 +41,19 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('email', $validated['email'])->first();
+        $user = User::all()->where('email', $validated['email'])->first();
 
-        \Log::info('Pokús o prihlásenie: ' . $validated['email']);
-
-        if (!$user) {
+        if(!$user) {
             \Log::warning('Používateľ neexistuje');
-        } elseif (!Hash::check($validated['password'], $user->password)) {
-            \Log::warning('Nesprávne heslo pre používateľa: ' . $user->email);
+            throw new \Exception('User not found');
         }
+        elseif (!Hash::check($validated['password'], $user->password)) {
+            \Log::warning('Nesprávne heslo pre používateľa: ' . $user->email);
+            throw new \Exception('Nesprávne heslo pre používateľa: ' . $user->email);
+        }
+
+        $user->token = bin2hex(random_bytes(15));
+        $user->save();
 
         return ApiResponseHelper::jsonResponse([
             'token' => $user->token
@@ -58,7 +65,7 @@ class AuthController extends Controller
         $user = $request->user;
 
         if ($user) {
-            $user->persist_code = null;
+            $user->token = '';
             $user->save();
         }
 

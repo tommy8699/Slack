@@ -1,6 +1,6 @@
 <?php
 
-namespace AppChat\Chat\Api;
+namespace AppChat\Chat\Http\Controllers;
 
 use AppChat\Chat\Helpers\ApiResponseHelper;
 use AppChat\Chat\Models\EmojiSetting;
@@ -11,16 +11,7 @@ class EmojiController extends BaseController
 {
     public function index(Request $request)
     {
-       // $user = $request->user;
-
-
-        //dd($user);
-        /*if(!$user) {
-            throw new \Exception('User not found');
-        }*/
-
         $emojis = EmojiSetting::all()->toArray();
-
 
         return ApiResponseHelper::jsonResponse($emojis);
     }

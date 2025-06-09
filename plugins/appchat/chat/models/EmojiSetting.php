@@ -1,33 +1,23 @@
-<?php
+<?php namespace Appchat\Chat\Models;
 
-namespace Appchat\Chat\Models;
+use Model;
 
-use System\Models\SettingModel;
-use October\Rain\Database\Traits\Validation;
-
-class EmojiSetting extends SettingModel
+/**
+ * EmojiSetting Model
+ *
+ * @link https://docs.octobercms.com/3.x/extend/system/models.html
+ */
+class EmojiSetting extends Model
 {
-    use Validation;
+    use \October\Rain\Database\Traits\Validation;
 
     /**
-     * Kód nastavení v databáze (v `system_settings`)
+     * @var string table name
      */
-    public $settingsCode = 'appchat_chat_emoji_settings';
+    public $table = 'appchat_emoji_settings';
 
     /**
-     * Súbor s definíciou polí
+     * @var array rules for validation
      */
-    public $settingsFields = 'fields.yaml';
-
-    /**
-     * Validačné pravidlá
-     */
-    public $rules = [
-        'emojis' => 'required|string',
-    ];
-
-    /**
-     * Polia ukladané ako JSON
-     */
-    protected $jsonable = ['emojis'];
+    public $rules = [];
 }
