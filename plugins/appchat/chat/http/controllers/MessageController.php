@@ -2,7 +2,7 @@
 
 namespace AppChat\Chat\Http\Controllers;
 
-use AppChat\Chat\Helpers\ApiResponseHelper;
+use AppCore\Core\Classes\Custom\ApiResponseHelper;
 use AppChat\Chat\Models\Chat;
 use AppChat\Chat\Models\Message;
 use AppChat\Chat\Models\Reaction;

@@ -2,8 +2,8 @@
 
 namespace AppUser\User\Http\Controllers;
 
-use AppUser\User\Http\Resources\ApiResponseResource;
 use AppUser\User\Models\User;
+use AppCore\Core\Classes\Custom\ApiResponseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +25,7 @@ class AuthController extends Controller
         $user->password = $validated['password'];
         $user->save();
 
-        return ApiResponseResource::jsonResponse([
+        return ApiResponseHelper::jsonResponse([
             'token' => $user->token
         ], 201, 'User registered');
     }
@@ -52,7 +52,7 @@ class AuthController extends Controller
         $user->token = Hash::make($plainToken);
         $user->save();
 
-        return ApiResponseResource::jsonResponse([
+        return ApiResponseHelper::jsonResponse([
             'token' => $user->token
         ], 200, 'Login successful');
     }
@@ -66,7 +66,7 @@ class AuthController extends Controller
             $user->save();
         }
 
-        return ApiResponseResource::jsonResponse([
+        return ApiResponseHelper::jsonResponse([
             'message' => 'Logged out'
         ]);
     }
