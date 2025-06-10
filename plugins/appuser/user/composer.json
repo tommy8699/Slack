@@ -1,0 +1,8 @@
+{
+    "name": "appchat/chat-plugin",
+    "type": "october-plugin",
+    "description": "User authentication and management.",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

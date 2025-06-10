@@ -1,0 +1,8 @@
+{
+    "name": "appchat/chat-plugin",
+    "type": "october-plugin",
+    "description": "Provides chat functionality via API and CMS.",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

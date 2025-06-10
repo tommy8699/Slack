@@ -1,7 +1,7 @@
 {
     "name": "appcore/core-plugin",
     "type": "october-plugin",
-    "description": "No description provided yet...",
+    "description": "Provides core utilities, enums, and shared classes used across multiple application plugins.",
     "require": {
         "composer/installers": "~1.0"
     }
