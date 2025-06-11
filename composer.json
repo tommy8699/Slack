@@ -18,7 +18,8 @@
         "w/filesystem-plugin": "^1.0",
         "w/image-plugin": "^2.0",
         "rainlab/user-plugin": "^3.2",
-        "rainlab/builder-plugin": "^2.0"
+        "rainlab/builder-plugin": "^2.0",
+        "laravel/socialite": "^5.21"
         },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"
