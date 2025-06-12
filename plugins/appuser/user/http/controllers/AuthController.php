@@ -88,7 +88,6 @@ class AuthController extends Controller
         try {
             // 1. Získať údaje od Googlu
             $googleUser = Socialite::driver('google')->stateless()->user();
-            //dd($googleUser);
 
             // 2. Získať alebo vytvoriť používateľa
             $user = User::where('email', $googleUser->getEmail())->first();
